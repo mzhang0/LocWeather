@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20B0D4081B4DF2F800A605F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B0D4071B4DF2F800A605F2 /* main.m */; };
+		20B0D40B1B4DF2F800A605F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B0D40A1B4DF2F800A605F2 /* AppDelegate.m */; };
+		20B0D4111B4DF2F800A605F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B0D40F1B4DF2F800A605F2 /* Main.storyboard */; };
+		20B0D4131B4DF2F800A605F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B0D4121B4DF2F800A605F2 /* Images.xcassets */; };
+		20B0D4161B4DF2F800A605F2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B0D4141B4DF2F800A605F2 /* LaunchScreen.xib */; };
+		20B0D4221B4DF2F800A605F2 /* LocWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B0D4211B4DF2F800A605F2 /* LocWeatherTests.m */; };
+		20B0D43D1B4DF62100A605F2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4371B4DF62100A605F2 /* Bolts.framework */; };
+		20B0D43E1B4DF62100A605F2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4381B4DF62100A605F2 /* Parse.framework */; };
+		20B0D43F1B4DF62100A605F2 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4391B4DF62100A605F2 /* ParseCrashReporting.framework */; };
+		20B0D4401B4DF62100A605F2 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D43A1B4DF62100A605F2 /* ParseFacebookUtils.framework */; };
+		20B0D4411B4DF62100A605F2 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D43B1B4DF62100A605F2 /* ParseFacebookUtilsV4.framework */; };
+		20B0D4421B4DF62100A605F2 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D43C1B4DF62100A605F2 /* ParseUI.framework */; };
+		20B0D4441B4DF68200A605F2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4431B4DF68200A605F2 /* AudioToolbox.framework */; };
+		20B0D4461B4DF68900A605F2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4451B4DF68900A605F2 /* CFNetwork.framework */; };
+		20B0D4481B4DF69400A605F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4471B4DF69400A605F2 /* CoreGraphics.framework */; };
+		20B0D44A1B4DF69E00A605F2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4491B4DF69E00A605F2 /* CoreLocation.framework */; };
+		20B0D44C1B4DF6A500A605F2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D44B1B4DF6A500A605F2 /* MobileCoreServices.framework */; };
+		20B0D44E1B4DF6AD00A605F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D44D1B4DF6AD00A605F2 /* QuartzCore.framework */; };
+		20B0D4501B4DF6B900A605F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D44F1B4DF6B900A605F2 /* Security.framework */; };
+		20B0D4521B4DF6C000A605F2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4511B4DF6C000A605F2 /* StoreKit.framework */; };
+		20B0D4541B4DF6F600A605F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4531B4DF6F600A605F2 /* SystemConfiguration.framework */; };
+		20B0D4561B4DF70300A605F2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4551B4DF70300A605F2 /* libz.dylib */; };
+		20B0D4581B4DF71300A605F2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4571B4DF71300A605F2 /* libsqlite3.dylib */; };
+		20B0D45C1B4DFD2300A605F2 /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B0D45B1B4DFD2300A605F2 /* LocationTableViewController.m */; };
+		20B0D45F1B4DFD4200A605F2 /* LocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B0D45E1B4DFD4200A605F2 /* LocationTableViewCell.m */; };
+		20B0D4611B4E083900A605F2 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4601B4E083900A605F2 /* Accounts.framework */; };
+		20B0D4631B4E084500A605F2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B0D4621B4E084500A605F2 /* Social.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		20B0D41C1B4DF2F800A605F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20B0D3FA1B4DF2F800A605F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20B0D4011B4DF2F800A605F2;
+			remoteInfo = LocWeather;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20B0D4021B4DF2F800A605F2 /* LocWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B0D4061B4DF2F800A605F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B0D4071B4DF2F800A605F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20B0D4091B4DF2F800A605F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		20B0D40A1B4DF2F800A605F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		20B0D4101B4DF2F800A605F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		20B0D4121B4DF2F800A605F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		20B0D4151B4DF2F800A605F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		20B0D41B1B4DF2F800A605F2 /* LocWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B0D4201B4DF2F800A605F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B0D4211B4DF2F800A605F2 /* LocWeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocWeatherTests.m; sourceTree = "<group>"; };
+		20B0D4371B4DF62100A605F2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		20B0D4381B4DF62100A605F2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		20B0D4391B4DF62100A605F2 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		20B0D43A1B4DF62100A605F2 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		20B0D43B1B4DF62100A605F2 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		20B0D43C1B4DF62100A605F2 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		20B0D4431B4DF68200A605F2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		20B0D4451B4DF68900A605F2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		20B0D4471B4DF69400A605F2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		20B0D4491B4DF69E00A605F2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		20B0D44B1B4DF6A500A605F2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		20B0D44D1B4DF6AD00A605F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		20B0D44F1B4DF6B900A605F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		20B0D4511B4DF6C000A605F2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		20B0D4531B4DF6F600A605F2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		20B0D4551B4DF70300A605F2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		20B0D4571B4DF71300A605F2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		20B0D45A1B4DFD2300A605F2 /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableViewController.h; sourceTree = "<group>"; };
+		20B0D45B1B4DFD2300A605F2 /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableViewController.m; sourceTree = "<group>"; };
+		20B0D45D1B4DFD4200A605F2 /* LocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableViewCell.h; sourceTree = "<group>"; };
+		20B0D45E1B4DFD4200A605F2 /* LocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableViewCell.m; sourceTree = "<group>"; };
+		20B0D4601B4E083900A605F2 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		20B0D4621B4E084500A605F2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20B0D3FF1B4DF2F800A605F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B0D4631B4E084500A605F2 /* Social.framework in Frameworks */,
+				20B0D4611B4E083900A605F2 /* Accounts.framework in Frameworks */,
+				20B0D4581B4DF71300A605F2 /* libsqlite3.dylib in Frameworks */,
+				20B0D4561B4DF70300A605F2 /* libz.dylib in Frameworks */,
+				20B0D4541B4DF6F600A605F2 /* SystemConfiguration.framework in Frameworks */,
+				20B0D4521B4DF6C000A605F2 /* StoreKit.framework in Frameworks */,
+				20B0D4501B4DF6B900A605F2 /* Security.framework in Frameworks */,
+				20B0D44E1B4DF6AD00A605F2 /* QuartzCore.framework in Frameworks */,
+				20B0D44C1B4DF6A500A605F2 /* MobileCoreServices.framework in Frameworks */,
+				20B0D44A1B4DF69E00A605F2 /* CoreLocation.framework in Frameworks */,
+				20B0D4481B4DF69400A605F2 /* CoreGraphics.framework in Frameworks */,
+				20B0D4461B4DF68900A605F2 /* CFNetwork.framework in Frameworks */,
+				20B0D4441B4DF68200A605F2 /* AudioToolbox.framework in Frameworks */,
+				20B0D4421B4DF62100A605F2 /* ParseUI.framework in Frameworks */,
+				20B0D43E1B4DF62100A605F2 /* Parse.framework in Frameworks */,
+				20B0D43F1B4DF62100A605F2 /* ParseCrashReporting.framework in Frameworks */,
+				20B0D4401B4DF62100A605F2 /* ParseFacebookUtils.framework in Frameworks */,
+				20B0D43D1B4DF62100A605F2 /* Bolts.framework in Frameworks */,
+				20B0D4411B4DF62100A605F2 /* ParseFacebookUtilsV4.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20B0D4181B4DF2F800A605F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20B0D3F91B4DF2F800A605F2 = {
+			isa = PBXGroup;
+			children = (
+				20B0D4591B4DF74500A605F2 /* Frameworks */,
+				20B0D4571B4DF71300A605F2 /* libsqlite3.dylib */,
+				20B0D4551B4DF70300A605F2 /* libz.dylib */,
+				20B0D4041B4DF2F800A605F2 /* LocWeather */,
+				20B0D41E1B4DF2F800A605F2 /* LocWeatherTests */,
+				20B0D4031B4DF2F800A605F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20B0D4031B4DF2F800A605F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20B0D4021B4DF2F800A605F2 /* LocWeather.app */,
+				20B0D41B1B4DF2F800A605F2 /* LocWeatherTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20B0D4041B4DF2F800A605F2 /* LocWeather */ = {
+			isa = PBXGroup;
+			children = (
+				20B0D4091B4DF2F800A605F2 /* AppDelegate.h */,
+				20B0D40A1B4DF2F800A605F2 /* AppDelegate.m */,
+				20B0D45A1B4DFD2300A605F2 /* LocationTableViewController.h */,
+				20B0D45B1B4DFD2300A605F2 /* LocationTableViewController.m */,
+				20B0D45D1B4DFD4200A605F2 /* LocationTableViewCell.h */,
+				20B0D45E1B4DFD4200A605F2 /* LocationTableViewCell.m */,
+				20B0D40F1B4DF2F800A605F2 /* Main.storyboard */,
+				20B0D4121B4DF2F800A605F2 /* Images.xcassets */,
+				20B0D4141B4DF2F800A605F2 /* LaunchScreen.xib */,
+				20B0D4051B4DF2F800A605F2 /* Supporting Files */,
+			);
+			path = LocWeather;
+			sourceTree = "<group>";
+		};
+		20B0D4051B4DF2F800A605F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20B0D4061B4DF2F800A605F2 /* Info.plist */,
+				20B0D4071B4DF2F800A605F2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20B0D41E1B4DF2F800A605F2 /* LocWeatherTests */ = {
+			isa = PBXGroup;
+			children = (
+				20B0D4211B4DF2F800A605F2 /* LocWeatherTests.m */,
+				20B0D41F1B4DF2F800A605F2 /* Supporting Files */,
+			);
+			path = LocWeatherTests;
+			sourceTree = "<group>";
+		};
+		20B0D41F1B4DF2F800A605F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20B0D4201B4DF2F800A605F2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20B0D4591B4DF74500A605F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20B0D4621B4E084500A605F2 /* Social.framework */,
+				20B0D4601B4E083900A605F2 /* Accounts.framework */,
+				20B0D4531B4DF6F600A605F2 /* SystemConfiguration.framework */,
+				20B0D4511B4DF6C000A605F2 /* StoreKit.framework */,
+				20B0D44F1B4DF6B900A605F2 /* Security.framework */,
+				20B0D44D1B4DF6AD00A605F2 /* QuartzCore.framework */,
+				20B0D44B1B4DF6A500A605F2 /* MobileCoreServices.framework */,
+				20B0D4491B4DF69E00A605F2 /* CoreLocation.framework */,
+				20B0D4471B4DF69400A605F2 /* CoreGraphics.framework */,
+				20B0D4451B4DF68900A605F2 /* CFNetwork.framework */,
+				20B0D4431B4DF68200A605F2 /* AudioToolbox.framework */,
+				20B0D4371B4DF62100A605F2 /* Bolts.framework */,
+				20B0D4381B4DF62100A605F2 /* Parse.framework */,
+				20B0D4391B4DF62100A605F2 /* ParseCrashReporting.framework */,
+				20B0D43A1B4DF62100A605F2 /* ParseFacebookUtils.framework */,
+				20B0D43B1B4DF62100A605F2 /* ParseFacebookUtilsV4.framework */,
+				20B0D43C1B4DF62100A605F2 /* ParseUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20B0D4011B4DF2F800A605F2 /* LocWeather */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20B0D4251B4DF2F800A605F2 /* Build configuration list for PBXNativeTarget "LocWeather" */;
+			buildPhases = (
+				20B0D3FE1B4DF2F800A605F2 /* Sources */,
+				20B0D3FF1B4DF2F800A605F2 /* Frameworks */,
+				20B0D4001B4DF2F800A605F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocWeather;
+			productName = LocWeather;
+			productReference = 20B0D4021B4DF2F800A605F2 /* LocWeather.app */;
+			productType = "com.apple.product-type.application";
+		};
+		20B0D41A1B4DF2F800A605F2 /* LocWeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20B0D4281B4DF2F800A605F2 /* Build configuration list for PBXNativeTarget "LocWeatherTests" */;
+			buildPhases = (
+				20B0D4171B4DF2F800A605F2 /* Sources */,
+				20B0D4181B4DF2F800A605F2 /* Frameworks */,
+				20B0D4191B4DF2F800A605F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20B0D41D1B4DF2F800A605F2 /* PBXTargetDependency */,
+			);
+			name = LocWeatherTests;
+			productName = LocWeatherTests;
+			productReference = 20B0D41B1B4DF2F800A605F2 /* LocWeatherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20B0D3FA1B4DF2F800A605F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "APAX Software";
+				TargetAttributes = {
+					20B0D4011B4DF2F800A605F2 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					20B0D41A1B4DF2F800A605F2 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 20B0D4011B4DF2F800A605F2;
+					};
+				};
+			};
+			buildConfigurationList = 20B0D3FD1B4DF2F800A605F2 /* Build configuration list for PBXProject "LocWeather" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20B0D3F91B4DF2F800A605F2;
+			productRefGroup = 20B0D4031B4DF2F800A605F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20B0D4011B4DF2F800A605F2 /* LocWeather */,
+				20B0D41A1B4DF2F800A605F2 /* LocWeatherTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20B0D4001B4DF2F800A605F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B0D4111B4DF2F800A605F2 /* Main.storyboard in Resources */,
+				20B0D4161B4DF2F800A605F2 /* LaunchScreen.xib in Resources */,
+				20B0D4131B4DF2F800A605F2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20B0D4191B4DF2F800A605F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20B0D3FE1B4DF2F800A605F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B0D40B1B4DF2F800A605F2 /* AppDelegate.m in Sources */,
+				20B0D4081B4DF2F800A605F2 /* main.m in Sources */,
+				20B0D45F1B4DFD4200A605F2 /* LocationTableViewCell.m in Sources */,
+				20B0D45C1B4DFD2300A605F2 /* LocationTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20B0D4171B4DF2F800A605F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B0D4221B4DF2F800A605F2 /* LocWeatherTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		20B0D41D1B4DF2F800A605F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20B0D4011B4DF2F800A605F2 /* LocWeather */;
+			targetProxy = 20B0D41C1B4DF2F800A605F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		20B0D40F1B4DF2F800A605F2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20B0D4101B4DF2F800A605F2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		20B0D4141B4DF2F800A605F2 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20B0D4151B4DF2F800A605F2 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20B0D4231B4DF2F800A605F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20B0D4241B4DF2F800A605F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20B0D4261B4DF2F800A605F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = LocWeather/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		20B0D4271B4DF2F800A605F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = LocWeather/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		20B0D4291B4DF2F800A605F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LocWeatherTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocWeather.app/LocWeather";
+			};
+			name = Debug;
+		};
+		20B0D42A1B4DF2F800A605F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LocWeatherTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocWeather.app/LocWeather";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20B0D3FD1B4DF2F800A605F2 /* Build configuration list for PBXProject "LocWeather" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20B0D4231B4DF2F800A605F2 /* Debug */,
+				20B0D4241B4DF2F800A605F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20B0D4251B4DF2F800A605F2 /* Build configuration list for PBXNativeTarget "LocWeather" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20B0D4261B4DF2F800A605F2 /* Debug */,
+				20B0D4271B4DF2F800A605F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		20B0D4281B4DF2F800A605F2 /* Build configuration list for PBXNativeTarget "LocWeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20B0D4291B4DF2F800A605F2 /* Debug */,
+				20B0D42A1B4DF2F800A605F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20B0D3FA1B4DF2F800A605F2 /* Project object */;
+}

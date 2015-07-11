@@ -6,6 +6,7 @@
 //
 
 #import "LocationTableViewController.h"
+#import "AFNetworking.h"
 
 @interface LocationTableViewController ()
 
@@ -38,6 +39,10 @@
         
         [self presentViewController:logInController animated:YES completion:nil];
     }
+    else {
+        [self fetchAllObjectsFromLocalDataStore];
+        [self fetchAllObjects];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,14 +50,114 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)fetchAllObjectsFromLocalDataStore {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Location"];
+    [query fromLocalDatastore];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
+        
+        if (error == nil) {
+            
+            self.locations = [locationObjects mutableCopy];
+            
+            [self.tableView reloadData];
+            
+            NSLog(@"Fetched from local datastore!");
+            
+            //
+            //
+            
+            NSMutableString *formattedUrlWithZipCodes = [[NSMutableString alloc] init];
+            
+            [formattedUrlWithZipCodes appendString:@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20("];
+            
+            for (NSUInteger i = 0; i < locationObjects.count; i++) {
+                
+                NSDictionary *location = [locationObjects objectAtIndex:i];
+                [formattedUrlWithZipCodes appendString:[location objectForKey:@"zip"]];
+                
+                if (i < locationObjects.count - 1)
+                    [formattedUrlWithZipCodes appendString:@"%2C"];
+                
+            }
+            
+            [formattedUrlWithZipCodes appendString:@")&format=json&callback="];
+            NSURL *url = [NSURL URLWithString:formattedUrlWithZipCodes];
+            
+            [self loadWeatherInformationWithUrl:url];
+            
+        }
+        else
+            NSLog(@"Error when fetching from local datastore!");
+        
+    }];
+}
+
+- (void)fetchAllObjects {
+    
+    [PFObject unpinAllObjectsInBackgroundWithBlock:nil];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Location"];
+    [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
+        
+        if (error == nil) {
+            
+            [PFObject pinAllInBackground:locationObjects block:nil];
+            
+            [self fetchAllObjectsFromLocalDataStore];
+            
+            NSLog(@"Fetched from Parse datastore!");
+        }
+        else
+            NSLog(@"Error when fetching from Parse datastore!");
+    }];
+    
+}
+
+- (void)loadWeatherInformationWithUrl:(NSURL*)url {
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //self.weather = (NSDictionary *)responseObject;
+        //self.title = @"JSON Retrieved";
+        NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
+        
+        NSArray *channels = [[query objectForKey:@"results"] objectForKey:@"channel"];
+        
+        for (NSDictionary *channel in channels)
+            
+            if (![[channel objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"])
+                
+                [self.dataArray addObject:channel];
+        
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[error localizedDescription] message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+        
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
+    
+    [operation start];
+}
+
 #pragma mark - Log in delegate methods
 
 - (BOOL)logInViewController:(PFLogInViewController * __nonnull)logInController shouldBeginLogInWithUsername:(NSString * __nonnull)username password:(NSString * __nonnull)password {
     
     /*if (![username isEqualToString:@""] || ![password isEqualToString:@""])
-        return YES;
-    
-    return NO;*/
+     return YES;
+     
+     return NO;*/
     
     return (![username isEqualToString:@""] && ![password isEqualToString:@""]);
 }
@@ -82,69 +187,67 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.locations.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
+     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+ 
     // Configure the cell...
-    
+ 
     return cell;
 }
-*/
+
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

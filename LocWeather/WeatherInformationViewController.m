@@ -15,7 +15,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = [NSString stringWithFormat:@"%@, %@", self.weatherInformation.city, self.weatherInformation.state];
+    
+    self.temperatureLabel.text = self.weatherInformation.temperature;
+    self.textConditionLabel.text = self.weatherInformation.text;
 }
 
 - (void)didReceiveMemoryWarning {

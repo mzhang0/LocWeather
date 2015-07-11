@@ -50,7 +50,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="70E-PN-mah" kind="show" id="GAU-jf-9Uh"/>
+                                    <segue destination="70E-PN-mah" kind="show" identifier="ShowWeatherInformation" id="GAU-jf-9Uh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -183,21 +183,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsY-o7-OG9">
-                                <rect key="frame" x="192" y="140" width="216" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="YJY-J1-XGq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPg-eq-Wcp">
                                 <rect key="frame" x="177" y="206" width="246" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Mgc-aa-V0f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsY-o7-OG9">
+                                <rect key="frame" x="192" y="140" width="216" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="YJY-J1-XGq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -210,6 +210,10 @@
                             <constraint firstItem="vPg-eq-Wcp" firstAttribute="top" secondItem="SsY-o7-OG9" secondAttribute="bottom" constant="8" id="e0X-cN-D7q"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="temperatureLabel" destination="SsY-o7-OG9" id="lEB-y4-WAL"/>
+                        <outlet property="textConditionLabel" destination="vPg-eq-Wcp" id="WQC-z1-VEH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUc-jU-F4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

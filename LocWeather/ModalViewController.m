@@ -33,14 +33,38 @@
 }
 */
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+/*- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
+    textField.text = self.zipCode;
+    [textField resignFirstResponder];
     
     return YES;
-}
+}*/
 
 - (IBAction)SubmitAction:(id)sender {
     
+    NSString *zipCode = self.zipCodeTextField.text;
+    
+    self.locationObject = [PFObject objectWithClassName:@"Location"];
+    
+    NSLog(@"%@", zipCode);
+    NSLog(@"%@", [PFUser currentUser].username);
+    
+    [self.locationObject setObject:[PFUser currentUser].username forKey:@"username"];
+    [self.locationObject setObject:zipCode forKey:@"zip"];
+    
+    [self.zipCodeTextField resignFirstResponder];
+    
+    [self.locationObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Location object saved!");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            NSLog(@"Location object failed to save!");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (IBAction)CancelAction:(id)sender {

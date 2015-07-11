@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ModalViewController : UIViewController <UITextFieldDelegate>
 
@@ -15,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
 
-@property (strong, nonatomic) NSString *zipCode;
+@property (strong, nonatomic) PFObject *locationObject;
+
+//@property (nonatomic) id delegate;
 
 @end

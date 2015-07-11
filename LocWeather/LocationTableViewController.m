@@ -6,6 +6,7 @@
 //
 
 #import "LocationTableViewController.h"
+#import "WeatherInformationViewController.h"
 #import "AFNetworking.h"
 
 @interface LocationTableViewController ()
@@ -107,6 +108,8 @@
             
             [self fetchAllObjectsFromLocalDataStore];
             
+            NSLog(@"%@", locationObjects);
+            
             NSLog(@"Fetched from Parse datastore!");
         }
         else
@@ -124,9 +127,10 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //self.weather = (NSDictionary *)responseObject;
+        NSDictionary *weather = (NSDictionary *)responseObject;
+        NSLog(@"%@", weather);
         //self.title = @"JSON Retrieved";
-        NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
+        /*NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
         
         NSArray *channels = [[query objectForKey:@"results"] objectForKey:@"channel"];
         
@@ -136,15 +140,20 @@
                 
                 [self.dataArray addObject:channel];
         
-        [self.tableView reloadData];
+        NSLog(@"%@", self.dataArray);
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.tableView reloadData];*/
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[error localizedDescription] message:nil preferredStyle:UIAlertControllerStyleAlert];
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        /*UIAlertController *alert = [UIAlertController alertControllerWithTitle:[error localizedDescription] message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
         
         [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];*/
+        
+        NSLog(@"Failed!");
     }];
     
     [operation start];
@@ -240,14 +249,22 @@
  }
  */
 
-/*
+
  #pragma mark - Navigation
- 
+
+/*-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+    
+}*/
+
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     
+     if ([segue.identifier isEqualToString:@"ShowWeatherInformation"]) {
+         
+         WeatherInformationViewController *viewController = segue.destinationViewController;
+         viewController.weatherInformation = [[WeatherInformation alloc] init];
+         
+     }
  }
- */
 
 @end

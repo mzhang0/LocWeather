@@ -29,21 +29,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (![PFUser currentUser]) {
+    if (![PFUser currentUser])
         
-        PFLogInViewController *logInController = [[PFLogInViewController alloc] init];
-        logInController.delegate = self;
-        
-        PFSignUpViewController *signUpController = [[PFSignUpViewController alloc] init];
-        signUpController.delegate = self;
-        
-        logInController.signUpController = signUpController;
-        
-        [self presentViewController:logInController animated:YES completion:nil];
-    }
+        [self showLogInSignUpView];
     else {
         
-        [self fetchAllObjectsFromLocalDataStore];
+        [self.LocationTableActivityIndicator startAnimating];
         [self fetchAllObjects];
     }
 }
@@ -53,51 +44,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)fetchAllObjectsFromLocalDataStore {
+- (void)showLogInSignUpView {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Location"];
-    [query fromLocalDatastore];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
-        
-        if (!error) {
-            
-            self.locations = [locationObjects mutableCopy];
-            
-            [self.tableView reloadData];
-            
-            NSLog(@"Fetched from local datastore!");
-            
-            //
-            //
-            
-            if (locationObjects.count > 0) {
-                
-                NSMutableString *formattedUrlWithZipCodes = [@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20(" mutableCopy];
-            
-                NSLog(@"THERE ARE %d OBJECTS!!!", locationObjects.count);
-                
-                for (NSUInteger i = 0; i < locationObjects.count; i++) {
-                    
-                    NSDictionary *location = [locationObjects objectAtIndex:i];
-                    [formattedUrlWithZipCodes appendString:[location objectForKey:@"zip"]];
-                    
-                    if (i < locationObjects.count - 1)
-                        [formattedUrlWithZipCodes appendString:@"%2C"];
-                }
-                
-                [formattedUrlWithZipCodes appendString:@")&format=json"];
-                
-                [self loadWeatherInformationWithUrl:(NSString *)formattedUrlWithZipCodes];
-            }
-        }
-        else
-            NSLog(@"Error when fetching from local datastore!");
-    }];
+    PFLogInViewController *logInController = [[PFLogInViewController alloc] init];
+    logInController.delegate = self;
+    
+    PFSignUpViewController *signUpController = [[PFSignUpViewController alloc] init];
+    signUpController.delegate = self;
+    
+    UILabel *logInLogo = [[UILabel alloc] init];
+    logInLogo.text = @"LocWeather";
+    logInController.logInView.logo = logInLogo;
+    
+    logInController.logInView.dismissButton.hidden = YES;
+    
+    UILabel *signUpLogo = [[UILabel alloc] init];
+    signUpLogo.text = @"LocWeather";
+    signUpController.signUpView.logo = signUpLogo;
+    
+    logInController.signUpController = signUpController;
+    
+    [self presentViewController:logInController animated:YES completion:nil];
 }
 
 - (void)fetchAllObjects {
-    
-    [PFObject unpinAllObjectsInBackgroundWithBlock:nil];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Location"];
     [query whereKey:@"username" equalTo:[PFUser currentUser].username];
@@ -105,16 +75,29 @@
         
         if (!error) {
             
-            [PFObject pinAllInBackground:locationObjects block:nil];
+            NSLog(@"Fetched from Parse datastore!:\n%@", locationObjects);
             
-            [self fetchAllObjectsFromLocalDataStore];
+            NSMutableString *formattedUrlWithZipCodes = [@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20(" mutableCopy];
             
-            NSLog(@"%@", locationObjects);
+            NSLog(@"THERE ARE %d OBJECTS!!!", locationObjects.count);
             
-            NSLog(@"Fetched from Parse datastore!");
+            for (NSUInteger i = 0; i < locationObjects.count; i++) {
+                
+                NSDictionary *location = [locationObjects objectAtIndex:i];
+                [formattedUrlWithZipCodes appendString:[location objectForKey:@"zip"]];
+                
+                if (i < locationObjects.count - 1)
+                    [formattedUrlWithZipCodes appendString:@"%2C"];
+            }
+            
+            [formattedUrlWithZipCodes appendString:@")&format=json"];
+            
+            [self loadWeatherInformationWithUrl:(NSString *)formattedUrlWithZipCodes];
         }
         else
             NSLog(@"Error when fetching from Parse datastore!");
+        
+        [self.LocationTableActivityIndicator stopAnimating];
     }];
 }
 
@@ -123,7 +106,6 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //NSLog(@"JSON: %@", responseObject);
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         
         NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
@@ -289,5 +271,12 @@
          viewController.weatherInformation = self.weatherInformationArray[indexPath.row];
      }
  }
+
+- (IBAction)SignOut:(UIBarButtonItem *)sender {
+    
+    [PFUser logOut];
+    [self showLogInSignUpView];
+    NSLog(@"User logged out!");
+}
 
 @end

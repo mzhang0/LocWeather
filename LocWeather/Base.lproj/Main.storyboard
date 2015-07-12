@@ -13,6 +13,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="Nej-ne-gvZ">
+                            <rect key="frame" x="0.0" y="64" width="600" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bU1-o8-drk" customClass="LocationTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -62,12 +66,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" id="Q2Z-GZ-xNt">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="fPt-fs-VFH">
+                            <connections>
+                                <action selector="SignOut:" destination="uL9-cO-9lo" id="ByO-f9-GEa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ta4-ng-aUf">
                             <connections>
                                 <segue destination="6VK-DC-NON" kind="presentation" identifier="ShowModalViewController" id="WIx-sr-UqI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="LocationTableActivityIndicator" destination="Nej-ne-gvZ" id="5XX-7Y-voF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVx-CB-rGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

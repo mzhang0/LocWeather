@@ -8,13 +8,16 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
-//#import <RestKit/RestKit.h>
 #import "WeatherInformation.h"
 
 @interface LocationTableViewController : UITableViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *LocationTableActivityIndicator;
+
 @property (nonatomic, strong) NSMutableArray *locations;
 @property (nonatomic, strong) NSMutableArray *weatherInformationArray;
+
+- (IBAction)SignOut:(UIBarButtonItem *)sender;
 
 @end
 

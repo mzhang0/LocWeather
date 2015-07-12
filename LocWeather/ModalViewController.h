@@ -18,6 +18,4 @@
 
 @property (strong, nonatomic) PFObject *locationObject;
 
-//@property (nonatomic) id delegate;
-
 @end

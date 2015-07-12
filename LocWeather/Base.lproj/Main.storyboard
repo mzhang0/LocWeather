@@ -13,9 +13,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <activityIndicatorView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="Nej-ne-gvZ">
+                        <activityIndicatorView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="Nej-ne-gvZ">
                             <rect key="frame" x="0.0" y="64" width="600" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="color" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </activityIndicatorView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bU1-o8-drk" customClass="LocationTableViewCell">
@@ -215,23 +216,36 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SLf-Kn-Qqz">
+                                <rect key="frame" x="290" y="64" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="9Ni-rM-OIe"/>
+                                    <constraint firstAttribute="height" constant="20" id="h48-SI-Hr8"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="SLf-Kn-Qqz" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" id="83i-ym-AoG"/>
                             <constraint firstAttribute="centerX" secondItem="SsY-o7-OG9" secondAttribute="centerX" id="9ZK-NB-B6n"/>
                             <constraint firstItem="SsY-o7-OG9" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" constant="76" id="LQY-Eb-Hc2"/>
                             <constraint firstAttribute="centerX" secondItem="vPg-eq-Wcp" secondAttribute="centerX" id="X0M-t9-Idt"/>
                             <constraint firstItem="vPg-eq-Wcp" firstAttribute="top" secondItem="SsY-o7-OG9" secondAttribute="bottom" constant="8" id="e0X-cN-D7q"/>
+                            <constraint firstAttribute="centerX" secondItem="SLf-Kn-Qqz" secondAttribute="centerX" id="kIJ-89-Tk7"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="temperatureLabel" destination="SsY-o7-OG9" id="lEB-y4-WAL"/>
                         <outlet property="textConditionLabel" destination="vPg-eq-Wcp" id="WQC-z1-VEH"/>
+                        <outlet property="weatherInformationActivity" destination="SLf-Kn-Qqz" id="yG2-ve-H7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUc-jU-F4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2126" y="777"/>
+            <point key="canvasLocation" x="2126" y="826"/>
         </scene>
     </scenes>
 </document>

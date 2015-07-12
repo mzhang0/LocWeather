@@ -10,7 +10,10 @@
 #import "LocationTableViewCell.h"
 #import "WeatherInformationViewController.h"
 
-@interface LocationTableViewController ()
+@interface LocationTableViewController () {
+    
+    UIRefreshControl *refreshControl;
+}
 
 @end
 
@@ -24,6 +27,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(fetchAllObjects) forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:refreshControl];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -97,6 +104,7 @@
         else
             NSLog(@"Error when fetching from Parse datastore!");
         
+        [refreshControl endRefreshing];
         [self.LocationTableActivityIndicator stopAnimating];
     }];
 }

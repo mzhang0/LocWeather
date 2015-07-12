@@ -19,19 +19,19 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bU1-o8-drk" id="Mxu-oG-mV2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Little Harbor on the Hillsboro, FL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd0-oV-z3i">
-                                            <rect key="frame" x="8" y="11" width="251" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-Xk-Bgx">
+                                            <rect key="frame" x="529" y="11" width="63" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Sz9-GR-xd7"/>
+                                                <constraint firstAttribute="height" constant="21" id="AZT-Ie-UmQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-Xk-Bgx">
-                                            <rect key="frame" x="529" y="11" width="63" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Little Harbor on the Hillsboro, FL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd0-oV-z3i">
+                                            <rect key="frame" x="8" y="11" width="251" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="AZT-Ie-UmQ"/>
+                                                <constraint firstAttribute="height" constant="21" id="Sz9-GR-xd7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -50,6 +50,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="LocationLabel" destination="Cd0-oV-z3i" id="aPf-VX-dde"/>
+                                    <outlet property="TemperatureLabel" destination="oWj-Xk-Bgx" id="9U6-LS-o2S"/>
                                     <segue destination="70E-PN-mah" kind="show" identifier="ShowWeatherInformation" id="GAU-jf-9Uh"/>
                                 </connections>
                             </tableViewCell>

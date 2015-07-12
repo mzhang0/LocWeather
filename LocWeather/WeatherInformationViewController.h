@@ -11,6 +11,7 @@
 @interface WeatherInformationViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *textConditionLabel;
 
 @property (strong, nonatomic) WeatherInformation *weatherInformation;

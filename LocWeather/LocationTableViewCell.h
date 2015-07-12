@@ -9,4 +9,8 @@
 
 @interface LocationTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *LocationLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *TemperatureLabel;
+
 @end

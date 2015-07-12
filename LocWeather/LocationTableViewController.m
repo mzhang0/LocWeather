@@ -5,9 +5,10 @@
 //  Copyright (c) 2015 APAX Software. All rights reserved.
 //
 
-#import "LocationTableViewController.h"
-#import "WeatherInformationViewController.h"
 #import "AFNetworking.h"
+#import "LocationTableViewController.h"
+#import "LocationTableViewCell.h"
+#import "WeatherInformationViewController.h"
 
 @interface LocationTableViewController ()
 
@@ -28,7 +29,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if ([PFUser currentUser] == nil) {
+    if (![PFUser currentUser]) {
         
         PFLogInViewController *logInController = [[PFLogInViewController alloc] init];
         logInController.delegate = self;
@@ -41,6 +42,7 @@
         [self presentViewController:logInController animated:YES completion:nil];
     }
     else {
+        
         [self fetchAllObjectsFromLocalDataStore];
         [self fetchAllObjects];
     }
@@ -57,7 +59,7 @@
     [query fromLocalDatastore];
     [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
         
-        if (error == nil) {
+        if (!error) {
             
             self.locations = [locationObjects mutableCopy];
             
@@ -68,29 +70,28 @@
             //
             //
             
-            NSMutableString *formattedUrlWithZipCodes = [[NSMutableString alloc] init];
+            if (locationObjects.count > 0) {
+                
+                NSMutableString *formattedUrlWithZipCodes = [@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20(" mutableCopy];
             
-            [formattedUrlWithZipCodes appendString:@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20("];
-            
-            for (NSUInteger i = 0; i < locationObjects.count; i++) {
+                NSLog(@"THERE ARE %d OBJECTS!!!", locationObjects.count);
                 
-                NSDictionary *location = [locationObjects objectAtIndex:i];
-                [formattedUrlWithZipCodes appendString:[location objectForKey:@"zip"]];
+                for (NSUInteger i = 0; i < locationObjects.count; i++) {
+                    
+                    NSDictionary *location = [locationObjects objectAtIndex:i];
+                    [formattedUrlWithZipCodes appendString:[location objectForKey:@"zip"]];
+                    
+                    if (i < locationObjects.count - 1)
+                        [formattedUrlWithZipCodes appendString:@"%2C"];
+                }
                 
-                if (i < locationObjects.count - 1)
-                    [formattedUrlWithZipCodes appendString:@"%2C"];
+                [formattedUrlWithZipCodes appendString:@")&format=json"];
                 
+                [self loadWeatherInformationWithUrl:(NSString *)formattedUrlWithZipCodes];
             }
-            
-            [formattedUrlWithZipCodes appendString:@")&format=json&callback="];
-            NSURL *url = [NSURL URLWithString:formattedUrlWithZipCodes];
-            
-            [self loadWeatherInformationWithUrl:url];
-            
         }
         else
             NSLog(@"Error when fetching from local datastore!");
-        
     }];
 }
 
@@ -102,7 +103,7 @@
     [query whereKey:@"username" equalTo:[PFUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
         
-        if (error == nil) {
+        if (!error) {
             
             [PFObject pinAllInBackground:locationObjects block:nil];
             
@@ -115,22 +116,17 @@
         else
             NSLog(@"Error when fetching from Parse datastore!");
     }];
-    
 }
 
-- (void)loadWeatherInformationWithUrl:(NSURL*)url {
+- (void)loadWeatherInformationWithUrl:(NSString*)url {
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *weather = (NSDictionary *)responseObject;
-        NSLog(@"%@", weather);
-        //self.title = @"JSON Retrieved";
-        /*NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
+        //NSLog(@"JSON: %@", responseObject);
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        
+        NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
         
         NSArray *channels = [[query objectForKey:@"results"] objectForKey:@"channel"];
         
@@ -138,25 +134,50 @@
             
             if (![[channel objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"])
                 
-                [self.dataArray addObject:channel];
+                [dataArray addObject:channel];
         
-        NSLog(@"%@", self.dataArray);
+        NSLog(@"DATA ARRAY:\n%@", dataArray);
         
-        [self.tableView reloadData];*/
+        NSMutableArray *filteredDataArray = [[NSMutableArray alloc] init];
         
+        for (NSDictionary *localData in dataArray) {
+            
+            NSMutableDictionary *filteredLocalData = [[NSMutableDictionary alloc] init];
+            
+            NSDictionary *locationInformation = [localData objectForKey:@"location"];
+            [filteredLocalData setObject:[locationInformation objectForKey:@"city"] forKey:@"city"];
+            [filteredLocalData setObject:[locationInformation objectForKey:@"region"] forKey:@"state"];
+            
+            NSDictionary *conditionInformation = [[localData objectForKey:@"item"] objectForKey:@"condition"];
+            
+            [filteredLocalData setObject:[conditionInformation objectForKey:@"temp"] forKey:@"temperature"];
+            [filteredLocalData setObject:[conditionInformation objectForKey:@"text"] forKey:@"text"];
+            
+            [filteredDataArray addObject:filteredLocalData];
+        }
+        
+        NSLog(@"FILTERED DATA ARRAY:\n%@", filteredDataArray);
+        
+        self.weatherInformationArray = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary* localWeatherData in filteredDataArray) {
+            
+            WeatherInformation *localWeatherInformation = [[WeatherInformation alloc] initWithDictionary:localWeatherData];
+            [self.weatherInformationArray addObject:localWeatherInformation];
+        }
+        
+        [self.tableView reloadData];
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        /*UIAlertController *alert = [UIAlertController alertControllerWithTitle:[error localizedDescription] message:nil preferredStyle:UIAlertControllerStyleAlert];
+        NSLog(@"Failed get request with error: %@", error);
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[error localizedDescription] message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
         
         [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];*/
-        
-        NSLog(@"Failed!");
+        [self presentViewController:alert animated:YES completion:nil];
     }];
-    
-    [operation start];
 }
 
 #pragma mark - Log in delegate methods
@@ -202,18 +223,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.locations.count;
+    return self.weatherInformationArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    LocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
  
-    // Configure the cell...
- 
+    WeatherInformation *weatherInformation = self.weatherInformationArray[indexPath.row];
+    
+    cell.LocationLabel.text = [NSString stringWithFormat:@"%@, %@", weatherInformation.city, weatherInformation.state];
+    cell.TemperatureLabel.text = [NSString stringWithFormat:@"%@°F", weatherInformation.temperature];
+    
     return cell;
 }
-
 
 /*
  // Override to support conditional editing of the table view.
@@ -249,7 +272,6 @@
  }
  */
 
-
  #pragma mark - Navigation
 
 /*-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
@@ -261,9 +283,10 @@
      
      if ([segue.identifier isEqualToString:@"ShowWeatherInformation"]) {
          
-         WeatherInformationViewController *viewController = segue.destinationViewController;
-         viewController.weatherInformation = [[WeatherInformation alloc] init];
+         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
          
+         WeatherInformationViewController *viewController = segue.destinationViewController;
+         viewController.weatherInformation = self.weatherInformationArray[indexPath.row];
      }
  }
 

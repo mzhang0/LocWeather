@@ -56,6 +56,7 @@
     [self.zipCodeTextField resignFirstResponder];
     
     [self.locationObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
         if (succeeded) {
             NSLog(@"Location object saved!");
             [self dismissViewControllerAnimated:YES completion:nil];

@@ -9,10 +9,11 @@
 
 @interface WeatherInformation : NSObject
 
-@property (nonatomic, strong) NSDictionary *location;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *temperature;
 @property (nonatomic, strong) NSString *text;
+
+- (WeatherInformation *)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

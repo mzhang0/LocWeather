@@ -14,7 +14,7 @@
 @interface LocationTableViewController : UITableViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *locations;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *weatherInformationArray;
 
 @end
 

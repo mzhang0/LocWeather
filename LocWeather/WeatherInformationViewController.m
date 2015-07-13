@@ -43,7 +43,7 @@
 
 - (void)SelectedRefreshButton {
     
-    [self.weatherInformationActivity startAnimating];
+    [self.refreshActivityIndicator startAnimating];
     
     NSString *formattedCityName = [self.weatherInformation.city stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
@@ -55,7 +55,9 @@
         
             NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
             NSDictionary *channel = [[query objectForKey:@"results"] objectForKey:@"channel"];
-            
+        
+            NSLog(@"%@", query);
+        
             if (![[channel objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"]) {
                 
                 NSDictionary *conditionDictionary = [[channel objectForKey:@"item"] objectForKey:@"condition"];
@@ -79,8 +81,7 @@
              [alert addAction:okAction];
              [self presentViewController:alert animated:YES completion:nil];
     }];
-    
-    [self.weatherInformationActivity stopAnimating];
+    [self.refreshActivityIndicator stopAnimating];
 }
 
 @end

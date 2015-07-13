@@ -11,7 +11,6 @@
 #import "WeatherInformationViewController.h"
 
 @interface LocationTableViewController () {
-    
     UIRefreshControl *refreshControl;
 }
 
@@ -82,11 +81,7 @@
         
         if (!error) {
             
-            NSLog(@"Fetched from Parse datastore!:\n%@", locationObjects);
-            
             NSMutableString *formattedUrlWithZipCodes = [@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20(" mutableCopy];
-            
-            NSLog(@"THERE ARE %d OBJECTS!!!", locationObjects.count);
             
             for (NSUInteger i = 0; i < locationObjects.count; i++) {
                 
@@ -126,8 +121,6 @@
                 
                 [dataArray addObject:channel];
         
-        NSLog(@"DATA ARRAY:\n%@", dataArray);
-        
         NSMutableArray *filteredDataArray = [[NSMutableArray alloc] init];
         
         for (NSDictionary *localData in dataArray) {
@@ -145,8 +138,6 @@
             
             [filteredDataArray addObject:filteredLocalData];
         }
-        
-        NSLog(@"FILTERED DATA ARRAY:\n%@", filteredDataArray);
         
         self.weatherInformationArray = [[NSMutableArray alloc] init];
         
@@ -173,12 +164,6 @@
 #pragma mark - Log in delegate methods
 
 - (BOOL)logInViewController:(PFLogInViewController * __nonnull)logInController shouldBeginLogInWithUsername:(NSString * __nonnull)username password:(NSString * __nonnull)password {
-    
-    /*if (![username isEqualToString:@""] || ![password isEqualToString:@""])
-     return YES;
-     
-     return NO;*/
-    
     return (![username isEqualToString:@""] && ![password isEqualToString:@""]);
 }
 
@@ -187,7 +172,13 @@
 }
 
 - (void)logInViewController:(PFLogInViewController * __nonnull)logInController didFailToLogInWithError:(nullable NSError *)error {
+    
     NSLog(@"Log in failed!");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Login failed!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Sign up delegate methods
@@ -263,10 +254,6 @@
  */
 
  #pragma mark - Navigation
-
-/*-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
-    
-}*/
 
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *LocationTableActivityIndicator;
 
-@property (nonatomic, strong) NSMutableArray *locations;
 @property (nonatomic, strong) NSMutableArray *weatherInformationArray;
 
 - (IBAction)SignOut:(UIBarButtonItem *)sender;

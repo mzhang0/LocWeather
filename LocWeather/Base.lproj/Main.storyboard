@@ -24,19 +24,19 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bU1-o8-drk" id="Mxu-oG-mV2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-Xk-Bgx">
-                                            <rect key="frame" x="529" y="11" width="63" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Little Harbor on the Hillsboro, FL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd0-oV-z3i">
+                                            <rect key="frame" x="8" y="11" width="251" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="AZT-Ie-UmQ"/>
+                                                <constraint firstAttribute="height" constant="21" id="63X-mN-2Cx"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Little Harbor on the Hillsboro, FL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd0-oV-z3i">
-                                            <rect key="frame" x="8" y="11" width="251" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-Xk-Bgx">
+                                            <rect key="frame" x="529" y="11" width="63" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Sz9-GR-xd7"/>
+                                                <constraint firstAttribute="height" constant="21" id="Syb-XW-elj"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -44,14 +44,10 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Cd0-oV-z3i" firstAttribute="top" secondItem="Mxu-oG-mV2" secondAttribute="topMargin" constant="3" id="7WQ-sV-iE5"/>
-                                        <constraint firstAttribute="centerY" secondItem="oWj-Xk-Bgx" secondAttribute="centerY" id="Gze-Ch-U5C"/>
-                                        <constraint firstItem="Cd0-oV-z3i" firstAttribute="leading" secondItem="Mxu-oG-mV2" secondAttribute="leadingMargin" id="J0W-L0-Sct"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="oWj-Xk-Bgx" secondAttribute="bottom" constant="3" id="XF8-Nr-xnu"/>
-                                        <constraint firstItem="oWj-Xk-Bgx" firstAttribute="top" secondItem="Mxu-oG-mV2" secondAttribute="topMargin" constant="3" id="fyZ-0Z-noQ"/>
-                                        <constraint firstItem="oWj-Xk-Bgx" firstAttribute="trailing" secondItem="Mxu-oG-mV2" secondAttribute="trailingMargin" id="gVk-0F-VA4"/>
-                                        <constraint firstAttribute="centerY" secondItem="Cd0-oV-z3i" secondAttribute="centerY" id="ti0-vH-YVL"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Cd0-oV-z3i" secondAttribute="bottom" constant="3" id="zzB-P5-qAS"/>
+                                        <constraint firstItem="Cd0-oV-z3i" firstAttribute="leading" secondItem="Mxu-oG-mV2" secondAttribute="leadingMargin" id="8c0-ve-xeE"/>
+                                        <constraint firstAttribute="centerY" secondItem="oWj-Xk-Bgx" secondAttribute="centerY" id="acW-2B-Q3g"/>
+                                        <constraint firstAttribute="centerY" secondItem="Cd0-oV-z3i" secondAttribute="centerY" id="f8N-xU-zls"/>
+                                        <constraint firstItem="oWj-Xk-Bgx" firstAttribute="trailing" secondItem="Mxu-oG-mV2" secondAttribute="trailingMargin" id="xp5-uT-cDx"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -98,17 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States ZIP Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-Dt-VW1">
-                                <rect key="frame" x="209" y="95" width="182" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="3vY-a4-kD8"/>
-                                    <constraint firstAttribute="width" constant="182" id="LiE-MA-OvS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hmh-si-Qgu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5-Digit ZIP Code" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hmh-si-Qgu">
                                 <rect key="frame" x="16" y="124" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="MW4-iM-ffL"/>
@@ -119,6 +105,16 @@
                                     <outlet property="delegate" destination="8bp-X1-ZjD" id="8Im-jM-0hD"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States ZIP Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-Dt-VW1">
+                                <rect key="frame" x="209" y="95" width="182" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="3vY-a4-kD8"/>
+                                    <constraint firstAttribute="width" constant="182" id="LiE-MA-OvS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -216,31 +212,27 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SLf-Kn-Qqz">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DX1-JM-Gd4">
                                 <rect key="frame" x="290" y="64" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="9Ni-rM-OIe"/>
-                                    <constraint firstAttribute="height" constant="20" id="h48-SI-Hr8"/>
-                                </constraints>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="SLf-Kn-Qqz" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" id="83i-ym-AoG"/>
                             <constraint firstAttribute="centerX" secondItem="SsY-o7-OG9" secondAttribute="centerX" id="9ZK-NB-B6n"/>
+                            <constraint firstItem="DX1-JM-Gd4" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" id="BLU-bi-HvX"/>
                             <constraint firstItem="SsY-o7-OG9" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" constant="76" id="LQY-Eb-Hc2"/>
+                            <constraint firstAttribute="centerX" secondItem="DX1-JM-Gd4" secondAttribute="centerX" id="Qzm-Ti-l65"/>
                             <constraint firstAttribute="centerX" secondItem="vPg-eq-Wcp" secondAttribute="centerX" id="X0M-t9-Idt"/>
                             <constraint firstItem="vPg-eq-Wcp" firstAttribute="top" secondItem="SsY-o7-OG9" secondAttribute="bottom" constant="8" id="e0X-cN-D7q"/>
-                            <constraint firstAttribute="centerX" secondItem="SLf-Kn-Qqz" secondAttribute="centerX" id="kIJ-89-Tk7"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="refreshActivityIndicator" destination="DX1-JM-Gd4" id="tht-lg-iQm"/>
                         <outlet property="temperatureLabel" destination="SsY-o7-OG9" id="lEB-y4-WAL"/>
                         <outlet property="textConditionLabel" destination="vPg-eq-Wcp" id="WQC-z1-VEH"/>
-                        <outlet property="weatherInformationActivity" destination="SLf-Kn-Qqz" id="yG2-ve-H7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUc-jU-F4R" userLabel="First Responder" sceneMemberID="firstResponder"/>

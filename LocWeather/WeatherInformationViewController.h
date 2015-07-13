@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *textConditionLabel;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *weatherInformationActivity;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *refreshActivityIndicator;
 
 @property (strong, nonatomic) WeatherInformation *weatherInformation;
 

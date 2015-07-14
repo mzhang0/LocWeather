@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *humidity;
 @property (nonatomic, strong) NSString *temperature;
 @property (nonatomic, strong) NSString *text;
 

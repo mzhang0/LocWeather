@@ -33,6 +33,7 @@
         self.zip = [dictionary objectForKey:@"zip"];
         self.city = [dictionary objectForKey:@"city"];
         self.state = [dictionary objectForKey:@"state"];
+        self.humidity = [dictionary objectForKey:@"humidity"];
         self.temperature = [dictionary objectForKey:@"temperature"];
         self.text = [dictionary objectForKey:@"text"];
     }

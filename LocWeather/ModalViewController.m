@@ -61,14 +61,12 @@
                 
                 [self.locationObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     
-                    if (succeeded) {
+                    if (succeeded)
                         NSLog(@"Location object saved!");
-                        [self dismissViewControllerAnimated:YES completion:nil];
-                    }
-                    else {
+                    else
                         NSLog(@"Location object failed to save!");
-                        [self dismissViewControllerAnimated:YES completion:nil];
-                    }
+            
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 }];
             }
             else {

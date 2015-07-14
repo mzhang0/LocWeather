@@ -7,6 +7,7 @@
 
 #import "WeatherInformationViewController.h"
 #import "AFNetworking.h"
+#import <Parse/Parse.h>
 
 @interface WeatherInformationViewController ()
 
@@ -22,13 +23,19 @@
     UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(SelectedRefreshButton)];
     self.navigationItem.rightBarButtonItem = refreshButton;
     
-    self.temperatureLabel.text = [NSString stringWithFormat:@"%@°F", self.weatherInformation.temperature];
-    self.textConditionLabel.text = self.weatherInformation.text;
+    [self formatLabels];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)formatLabels {
+    
+    self.temperatureLabel.text = [NSString stringWithFormat:@"%@°F", self.weatherInformation.temperature];
+    self.textConditionLabel.text = self.weatherInformation.text;
+    self.humidityLabel.text = [[NSArray arrayWithObjects:@"Humidity: ", self.weatherInformation.humidity, @"%", nil] componentsJoinedByString:@""];
 }
 
 /*
@@ -58,14 +65,13 @@
             if (![[channel objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"]) {
                 
                 NSDictionary *conditionDictionary = [[channel objectForKey:@"item"] objectForKey:@"condition"];
-                
-                NSLog(@"%@", conditionDictionary);
+                NSDictionary *atmosphereDictionary = [channel objectForKey:@"atmosphere"];
                 
                 self.weatherInformation.temperature = [conditionDictionary objectForKey:@"temp"];
                 self.weatherInformation.text = [conditionDictionary objectForKey:@"text"];
+                self.weatherInformation.humidity = [atmosphereDictionary objectForKey:@"humidity"];
                 
-                self.temperatureLabel.text = [NSString stringWithFormat:@"%@°F", self.weatherInformation.temperature];
-                self.textConditionLabel.text = self.weatherInformation.text;
+                [self formatLabels];
             }
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -80,6 +86,32 @@
     }];
     
     [self.refreshActivityIndicator stopAnimating];
+}
+
+- (IBAction)deleteSelection:(id)sender {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Location"];
+    [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+    [query whereKey:@"zip" equalTo:self.weatherInformation.zip];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
+        
+        if (!error) {
+            
+            NSLog(@"%@", locationObjects);
+            PFObject *locationObject = [locationObjects objectAtIndex:0];
+            [locationObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                
+                if (succeeded)
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                else {
+                    NSLog(@"Failed to delete location from Parse Core!");
+                }
+            
+            }];
+        }
+        else
+            NSLog(@"Failed delete location attempt!");
+    }];
 }
 
 @end

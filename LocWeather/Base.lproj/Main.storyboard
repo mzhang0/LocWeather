@@ -195,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPg-eq-Wcp">
-                                <rect key="frame" x="177" y="206" width="246" height="32"/>
+                                <rect key="frame" x="177" y="171" width="246" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Mgc-aa-V0f"/>
                                 </constraints>
@@ -207,7 +207,7 @@
                                 <rect key="frame" x="290" y="64" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--- °F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsY-o7-OG9">
-                                <rect key="frame" x="192" y="140" width="216" height="58"/>
+                                <rect key="frame" x="192" y="105" width="216" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="YJY-J1-XGq"/>
                                 </constraints>
@@ -215,21 +215,47 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCq-CI-jpg">
+                                <rect key="frame" x="231" y="477" width="139" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="3LU-7g-9Gz"/>
+                                    <constraint firstAttribute="width" constant="139" id="QOe-2n-MaP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Delete Location"/>
+                                <connections>
+                                    <action selector="deleteSelection:" destination="70E-PN-mah" eventType="touchUpInside" id="jYf-wv-h7P"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Humidity: ---%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePa-4X-8pm">
+                                <rect key="frame" x="227" y="211" width="147" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="UbL-sp-ciZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="g8f-Bj-pfT" firstAttribute="top" secondItem="nCq-CI-jpg" secondAttribute="bottom" constant="41" id="1nx-Ua-QDZ"/>
                             <constraint firstAttribute="centerX" secondItem="SsY-o7-OG9" secondAttribute="centerX" id="9ZK-NB-B6n"/>
                             <constraint firstItem="DX1-JM-Gd4" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" id="BLU-bi-HvX"/>
-                            <constraint firstItem="SsY-o7-OG9" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" constant="76" id="LQY-Eb-Hc2"/>
+                            <constraint firstItem="ePa-4X-8pm" firstAttribute="top" secondItem="vPg-eq-Wcp" secondAttribute="bottom" constant="8" id="E6U-Le-oLE"/>
+                            <constraint firstItem="SsY-o7-OG9" firstAttribute="top" secondItem="tDy-tS-elg" secondAttribute="bottom" constant="41" id="LQY-Eb-Hc2"/>
                             <constraint firstAttribute="centerX" secondItem="DX1-JM-Gd4" secondAttribute="centerX" id="Qzm-Ti-l65"/>
+                            <constraint firstAttribute="centerX" secondItem="nCq-CI-jpg" secondAttribute="centerX" id="TAd-xH-fIk"/>
                             <constraint firstAttribute="centerX" secondItem="vPg-eq-Wcp" secondAttribute="centerX" id="X0M-t9-Idt"/>
                             <constraint firstItem="vPg-eq-Wcp" firstAttribute="top" secondItem="SsY-o7-OG9" secondAttribute="bottom" constant="8" id="e0X-cN-D7q"/>
+                            <constraint firstAttribute="centerX" secondItem="ePa-4X-8pm" secondAttribute="centerX" id="e8g-4n-yC9"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="humidityLabel" destination="ePa-4X-8pm" id="E2i-Mi-lfG"/>
                         <outlet property="refreshActivityIndicator" destination="DX1-JM-Gd4" id="tht-lg-iQm"/>
                         <outlet property="temperatureLabel" destination="SsY-o7-OG9" id="lEB-y4-WAL"/>
                         <outlet property="textConditionLabel" destination="vPg-eq-Wcp" id="WQC-z1-VEH"/>

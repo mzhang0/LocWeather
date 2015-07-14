@@ -76,19 +76,28 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Location"];
     [query whereKey:@"username" equalTo:[PFUser currentUser].username];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *locationObjects, NSError *error) {
         
         if (!error) {
             
             self.zipCodes = [[NSMutableArray alloc] init];
             
-            for (NSDictionary *locationObject in locationObjects)
-                [self.zipCodes addObject:[locationObject objectForKey:@"zip"]];
+            if (locationObjects.count > 0) {
             
-            NSString *formattedUrlString = [WeatherInformation getFormattedUrlStringWithZipCodes:(NSArray *)self.zipCodes];
-            
-            if (self.zipCodes.count > 0)
-                [self loadWeatherInformationWithUrl:formattedUrlString];
+                for (NSDictionary *locationObject in locationObjects)
+                    [self.zipCodes addObject:[locationObject objectForKey:@"zip"]];
+                
+                NSString *formattedUrlString = [WeatherInformation getFormattedUrlStringWithZipCodes:(NSArray *)self.zipCodes];
+                
+                if (self.zipCodes.count > 0)
+                    [self loadWeatherInformationWithUrl:formattedUrlString];
+            }
+            else {
+                
+                self.weatherInformationArray = nil;
+                [self.tableView reloadData];
+            }
         }
         else
             NSLog(@"Error when fetching from Parse datastore!");
@@ -157,6 +166,9 @@
             [filteredLocalData setObject:[locationInformation objectForKey:@"city"] forKey:@"city"];
             [filteredLocalData setObject:[locationInformation objectForKey:@"region"] forKey:@"state"];
             [filteredLocalData setObject:[locationInformation objectForKey:@"zip"] forKey:@"zip"];
+            
+            NSDictionary *atmosphereInformation = [localData objectForKey:@"atmosphere"];
+            [filteredLocalData setObject:[atmosphereInformation objectForKey:@"humidity"] forKey:@"humidity"];
             
             NSDictionary *conditionInformation = [[localData objectForKey:@"item"] objectForKey:@"condition"];
             

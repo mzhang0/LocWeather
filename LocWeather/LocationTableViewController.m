@@ -36,7 +36,6 @@
     [super viewDidAppear:animated];
     
     if (![PFUser currentUser])
-        
         [self showLogInSignUpView];
     else {
         
@@ -81,20 +80,15 @@
         
         if (!error) {
             
-            NSMutableString *formattedUrlWithZipCodes = [@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20(" mutableCopy];
+            self.zipCodes = [[NSMutableArray alloc] init];
             
-            for (NSUInteger i = 0; i < locationObjects.count; i++) {
-                
-                NSDictionary *location = [locationObjects objectAtIndex:i];
-                [formattedUrlWithZipCodes appendString:[location objectForKey:@"zip"]];
-                
-                if (i < locationObjects.count - 1)
-                    [formattedUrlWithZipCodes appendString:@"%2C"];
-            }
+            for (NSDictionary *locationObject in locationObjects)
+                [self.zipCodes addObject:[locationObject objectForKey:@"zip"]];
             
-            [formattedUrlWithZipCodes appendString:@")&format=json"];
+            NSString *formattedUrlString = [WeatherInformation getFormattedUrlStringWithZipCodes:(NSArray *)self.zipCodes];
             
-            [self loadWeatherInformationWithUrl:(NSString *)formattedUrlWithZipCodes];
+            if (self.zipCodes.count > 0)
+                [self loadWeatherInformationWithUrl:formattedUrlString];
         }
         else
             NSLog(@"Error when fetching from Parse datastore!");
@@ -104,22 +98,50 @@
     }];
 }
 
-- (void)loadWeatherInformationWithUrl:(NSString*)url {
+- (void)loadWeatherInformationWithUrl:(NSString*)stringUrl {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSURL *url = [NSURL URLWithString:stringUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions: NSJSONReadingMutableContainers];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         
-        NSDictionary *query = [(NSDictionary *)responseObject objectForKey:@"query"];
+        NSDictionary *query = [responseObject objectForKey:@"query"];
         
-        NSArray *channels = [[query objectForKey:@"results"] objectForKey:@"channel"];
-        
-        for (NSDictionary *channel in channels)
+        if ((NSNumber *)[query objectForKey:@"count"] > [NSNumber numberWithInt:1]) {
             
-            if (![[channel objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"])
+            NSArray *channels = [[query objectForKey:@"results"] objectForKey:@"channel"];
+            
+            for (NSUInteger i = 0; i < channels.count; i++) {
                 
-                [dataArray addObject:channel];
+                NSDictionary *channel = [channels objectAtIndex:i];
+                
+                //Filters out results with errors
+                if (![[channel objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"]) {
+                    
+                    //Adds the ZIP code
+                    NSMutableDictionary *location = [channel objectForKey:@"location"];
+                    [location setObject:[self.zipCodes objectAtIndex:i] forKey:@"zip"];
+                    
+                    [dataArray addObject:channel];
+                }
+            }
+        }
+        else {
+            
+            NSDictionary *channelDictionary = [[query objectForKey:@"results"] objectForKey:@"channel"];
+            
+            if (![[channelDictionary objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"]) {
+                
+                //Adds the ZIP code
+                NSMutableDictionary *location = [channelDictionary  objectForKey:@"location"];
+                [location setObject:[self.zipCodes objectAtIndex:0] forKey:@"zip"];
+                
+                [dataArray addObject:channelDictionary];
+            }
+        }
         
         NSMutableArray *filteredDataArray = [[NSMutableArray alloc] init];
         
@@ -130,6 +152,7 @@
             NSDictionary *locationInformation = [localData objectForKey:@"location"];
             [filteredLocalData setObject:[locationInformation objectForKey:@"city"] forKey:@"city"];
             [filteredLocalData setObject:[locationInformation objectForKey:@"region"] forKey:@"state"];
+            [filteredLocalData setObject:[locationInformation objectForKey:@"zip"] forKey:@"zip"];
             
             NSDictionary *conditionInformation = [[localData objectForKey:@"item"] objectForKey:@"condition"];
             
@@ -159,6 +182,8 @@
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }];
+    
+    [operation start];
 }
 
 #pragma mark - Log in delegate methods

@@ -6,6 +6,7 @@
 //
 
 #import "ModalViewController.h"
+#import "WeatherInformation.h"
 #import "AFNetworking.h"
 
 @interface ModalViewController ()
@@ -40,9 +41,7 @@
 
     if (zipCode.length == 5) {
         
-        //Use YQL to validate the user's 5 digit ZIP code.
-        NSArray *stringArray = [[NSArray alloc] initWithObjects:@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20location%20IN%20(", zipCode, @")&format=json", nil];
-        NSString *url = [stringArray componentsJoinedByString:@""];
+        NSString *url = [WeatherInformation getFormattedUrlStringWithZipCodes:[[NSArray alloc] initWithObjects:zipCode, nil]];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {

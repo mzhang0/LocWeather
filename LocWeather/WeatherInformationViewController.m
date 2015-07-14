@@ -45,10 +45,7 @@
     
     [self.refreshActivityIndicator startAnimating];
     
-    NSString *formattedCityName = [self.weatherInformation.city stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    
-    NSArray *stringArray = [[NSArray alloc] initWithObjects:@"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22", formattedCityName, @"%2C", self.weatherInformation.state, @"%22)&format=json", nil];
-    NSString *url = [stringArray componentsJoinedByString:@""];
+    NSString *url = [WeatherInformation getFormattedUrlStringWithZipCodes:[[NSArray alloc] initWithObjects:self.weatherInformation.zip, nil]];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -81,6 +78,7 @@
              [alert addAction:okAction];
              [self presentViewController:alert animated:YES completion:nil];
     }];
+    
     [self.refreshActivityIndicator stopAnimating];
 }
 

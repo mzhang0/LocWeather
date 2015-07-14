@@ -110,7 +110,24 @@
         
         NSDictionary *query = [responseObject objectForKey:@"query"];
         
-        if ((NSNumber *)[query objectForKey:@"count"] > [NSNumber numberWithInt:1]) {
+        NSLog(@"%@", query);
+        
+        NSNumber *count = [query objectForKey:@"count"];
+        
+        if ([count isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            
+            NSDictionary *channelDictionary = [[query objectForKey:@"results"] objectForKey:@"channel"];
+            
+            if (![[channelDictionary objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"]) {
+                
+                //Adds the ZIP code
+                NSMutableDictionary *location = [channelDictionary  objectForKey:@"location"];
+                [location setObject:[self.zipCodes objectAtIndex:0] forKey:@"zip"];
+                
+                [dataArray addObject:channelDictionary];
+            }
+        }
+        else {
             
             NSArray *channels = [[query objectForKey:@"results"] objectForKey:@"channel"];
             
@@ -127,19 +144,6 @@
                     
                     [dataArray addObject:channel];
                 }
-            }
-        }
-        else {
-            
-            NSDictionary *channelDictionary = [[query objectForKey:@"results"] objectForKey:@"channel"];
-            
-            if (![[channelDictionary objectForKey:@"title"] isEqualToString:@"Yahoo! Weather - Error"]) {
-                
-                //Adds the ZIP code
-                NSMutableDictionary *location = [channelDictionary  objectForKey:@"location"];
-                [location setObject:[self.zipCodes objectAtIndex:0] forKey:@"zip"];
-                
-                [dataArray addObject:channelDictionary];
             }
         }
         
